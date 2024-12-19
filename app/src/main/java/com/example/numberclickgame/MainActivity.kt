@@ -73,8 +73,8 @@ class MainActivity : AppCompatActivity() {
         val screenHeight = displayMetrics.heightPixels // 画面高さ
 
         // ボタンサイズを計算（例: 画面幅の1/5,縦1/4に設定)
-        val buttonSizeWidth = (screenWidth / 5 )
-        val buttonSizeHeight = (screenHeight / 4 )
+        val buttonSizeWidth = (screenWidth / 5 ) // 画面幅の1/5
+        val buttonSizeHeight = (screenHeight / 4 ) // 縦1/4に設定
 
         for (number in numbers) {
             val button = Button(this).apply {
