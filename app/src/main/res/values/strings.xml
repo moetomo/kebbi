@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">NumberClickGame</string>
+    <string name="time_placeholder">タイム : --</string>
+    <string name="time_result">タイム : %.2f 秒</string>
+    <string name="prompt_start">１から順番に押して</string>
+    <string name="prompt_restart">ボタンを押してゲーム開始</string>
+    <string name="number_placeholder">%1$d</string>
 </resources>

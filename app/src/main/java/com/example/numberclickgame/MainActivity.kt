@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.GridLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.random.Random
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -66,13 +66,24 @@ class MainActivity : AppCompatActivity() {
 
         // 数字を配置
         gridLayout.removeAllViews()
+
+        // デバイスの画面サイズを取得
+        val displayMetrics = resources.displayMetrics
+        val screenWidth = displayMetrics.widthPixels // 画面幅
+        val screenHeight = displayMetrics.heightPixels // 画面高さ
+
+        // ボタンサイズを計算（例: 画面幅の1/5,縦1/4に設定)
+        val buttonSizeWidth = (screenWidth / 5 )
+        val buttonSizeHeight = (screenHeight / 4 )
+
         for (number in numbers) {
             val button = Button(this).apply {
-                text = number.toString()
-                textSize = 100f // テキストサイズを大きく
+                text = getString(R.string.number_placeholder, number)
+                textSize = 100f // テキストサイズ
                 layoutParams = GridLayout.LayoutParams().apply {
-                    width = 220 // ボタンの幅
-                    height = 160 // ボタンの高さ
+                    width = buttonSizeWidth
+                    height = buttonSizeHeight
+                    setMargins(1, 1, 1, 1) // マージン
                 }
                 setOnClickListener { onNumberClick(this, number) }
             }
@@ -80,9 +91,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         // タイマーをリセット
-        scoreTextView.text = "タイム : --"
-        startButton.text = "１から順番に押して"
+        scoreTextView.text = getString(R.string.time_placeholder)
+        startButton.text = getString(R.string.prompt_start)
     }
+
 
     private fun onNumberClick(button: Button, number: Int) {
         if (number == nextNumber) {
@@ -99,11 +111,13 @@ class MainActivity : AppCompatActivity() {
             if (nextNumber > 8) {
                 // ゲーム完了
                 val elapsed = (SystemClock.elapsedRealtime() - startTime) / 1000.0
-                scoreTextView.text = "タイム : %.2f 秒".format(elapsed)
-                startButton.text = "ボタンを押してゲーム開始"
+                // String.format を使用してロケールを指定
+                scoreTextView.text = String.format(Locale.getDefault(), "タイム : %.2f 秒", elapsed)
+                startButton.text = getString(R.string.prompt_restart)
             }
         }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
