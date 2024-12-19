@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="NumberClickGame.app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-12-19T05:25:19.733582100Z">
+        <DropdownSelection timestamp="2024-12-19T08:33:23.040017300Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\su-ab\.android\avd\Medium_Tablet_API_35.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=10390NNNB2215200156" />
             </handle>
           </Target>
         </DropdownSelection>

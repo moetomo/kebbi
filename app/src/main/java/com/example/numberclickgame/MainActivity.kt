@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var soundPool: SoundPool
     private val soundMap = mutableMapOf<Int, Int>() // 数字とサウンドIDを対応付ける
+    private var ganbatteneSoundId: Int = 0 // 頑張ってね音声のID
 
     private var startTime: Long = 0
     private var nextNumber = 1
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         soundMap[6] = soundPool.load(this, R.raw.note_la, 1) // ラ
         soundMap[7] = soundPool.load(this, R.raw.note_si, 1) // シ
         soundMap[8] = soundPool.load(this, R.raw.note_high_do, 1) // 高いド
+        ganbatteneSoundId = soundPool.load(this, R.raw.ganbattene, 1) // 頑張ってね音声
 
         // スタートボタンの処理
         startButton.setOnClickListener {
@@ -64,6 +66,9 @@ class MainActivity : AppCompatActivity() {
         startTime = SystemClock.elapsedRealtime()
         nextNumber = 1
 
+        // 「頑張ってね」音声を再生
+        soundPool.play(ganbatteneSoundId, 1.0f, 1.0f, 0, 0, 1.0f)
+
         // 数字を配置
         gridLayout.removeAllViews()
 
@@ -72,9 +77,9 @@ class MainActivity : AppCompatActivity() {
         val screenWidth = displayMetrics.widthPixels // 画面幅
         val screenHeight = displayMetrics.heightPixels // 画面高さ
 
-        // ボタンサイズを計算（例: 画面幅の1/5,縦1/4に設定)
-        val buttonSizeWidth = (screenWidth / 5 ) // 画面幅の1/5
-        val buttonSizeHeight = (screenHeight / 4 ) // 縦1/4に設定
+        // ボタンサイズを計算（例: 画面幅の1/5,縦1/4に設定）
+        val buttonSizeWidth = (screenWidth / 5) // 画面幅の1/5
+        val buttonSizeHeight = (screenHeight / 4) // 画面縦の1/4
 
         for (number in numbers) {
             val button = Button(this).apply {
@@ -94,7 +99,6 @@ class MainActivity : AppCompatActivity() {
         scoreTextView.text = getString(R.string.time_placeholder)
         startButton.text = getString(R.string.prompt_start)
     }
-
 
     private fun onNumberClick(button: Button, number: Int) {
         if (number == nextNumber) {
@@ -117,7 +121,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
