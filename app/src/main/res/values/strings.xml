@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NumberClickGame</string>
+    <string name="app_name">数字タップゲーム</string>
     <string name="time_placeholder">タイム : --</string>
     <string name="time_result">タイム : %.2f 秒</string>
     <string name="prompt_start">１から順番に押して</string>
